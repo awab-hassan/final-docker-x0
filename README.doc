@@ -1,0 +1,44 @@
+Hello, This is how I solved this exercise with explaination:
+
+EX 7:
+
+set variables:
+
+MYSQL_USER=mysql-user which is DB_USER too.
+MYSQL_PASSWORD=mysql-password which is DB_PWD too.
+MYSQL_DATABASE=mydb which is DB_NAME too.
+MYSQL_HOST=localhost
+MYSQL_ROOT_PASSWORD=mysql-root-password
+PMA_HOST=mysql
+PMA_PORT=3306
+
+setx MYSQL_USER mysql-user
+setx MYSQL_PASSWORD mysql-password
+setx MYSQL_DATABASE mydb 
+setx MYSQL_HOST localhost
+setx MYSQL_ROOT_PASSWORD mysql-root-password
+setx PMA_HOST mysql
+setx PMA_PORT 3306
+
+docker run -d --network my-network --name mysql-container -e MYSQL_ROOT_PASSWORD=J215c2VjcmV0cGFzc3dvcmQnIA0K -e MYSQL_DATABASE= J215ZGF0YWJhc2UnIA0K -e MYSQL_USER=J215dXNlcicgDQo= -e MYSQL_PASSWORD= J215cGFzc3dvcmQnIA0K mysql:latest
+
+docker run -d --network my-network --name phpmyadmin-container -p 8080:80 -e PMA_USER=J215dXNlcicgDQo=  -e PMA_PASSWORD= J215cGFzc3dvcmQnIA0K -e PMA_HOST=mysql-container phpmyadmin/phpmyadmin
+
+docker run -d --network my-network --name java-app -p 8889:8080 -e DB_NAME=J215ZGF0YWJhc2UnIA0K -e DB_USER=J215dXNlcicgDQo= -e DB_PWD=J215cGFzc3dvcmQnIA0K -e DB_SERVER=mysql-container awabhassan/my-repo:bootcamp-mysql-master
+
+
+MYSQL_ROOT_PASSWORD=J215c2VjcmV0cGFzc3dvcmQnIA0K 
+MYSQL_USER=J215dXNlcicgDQo=
+MYSQL_PASSWORD=J215cGFzc3dvcmQnIA0K
+MYSQL_DATABASE=J215ZGF0YWJhc2UnIA0K
+PMA_USER=J215dXNlcicgDQo=
+PMA_PASSWORD=J215cGFzc3dvcmQnIA0K
+PMA_HOST=name_of_mysql_container
+MYSQL_ROOT_PASSWORD=J215c2VjcmV0cGFzc3dvcmQnIA0K
+DB_USER=J215dXNlcicgDQo=
+DB_PWD=J215cGFzc3dvcmQnIA0K
+DB_SERVER=name_of_mysql_container
+DB_NAME=J215ZGF0YWJhc2UnIA0K
+
+
+--link mysql-container:db
